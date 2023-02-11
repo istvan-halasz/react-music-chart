@@ -17,6 +17,16 @@ function App() {
         >
           Learn React
         </a>
+        <a
+          className="btn btn-primary"
+          data-bs-toggle="collapse"
+          href="#collapseExample"
+          role="button"
+          aria-expanded="false"
+          aria-controls="collapseExample"
+        >
+          Bootstrap button
+        </a>
       </header>
     </div>
   );
