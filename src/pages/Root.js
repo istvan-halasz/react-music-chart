@@ -1,3 +1,5 @@
+import { Outlet } from 'react-router-dom';
+
 function RootLayout() {
   return (
     <>
@@ -54,6 +56,9 @@ function RootLayout() {
         <div className="bg-circle-3 bg-circle"></div>
         <div className="bg-circle-4 bg-circle"></div>
       </header>
+      <main>
+        <Outlet />
+      </main>
     </>
   );
 }
