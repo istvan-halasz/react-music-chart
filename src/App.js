@@ -4,6 +4,7 @@ import HomePage from './pages/Home';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import ArtistsRootLayout from './pages/ArtistsRoot';
 import ArtistsPage from './pages/Artists';
+import EditArtistPage from './pages/EditArtis';
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <ArtistsPage />,
+          },
+          {
+            path: 'new',
+            element: <EditArtistPage />,
           },
         ],
       },
