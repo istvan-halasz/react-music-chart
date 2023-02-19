@@ -1,7 +1,7 @@
 import ArtistForm from '../../components/Artists/ArtistForm';
 
-function EditArtistPage() {
-  return <ArtistForm />;
+function NewArtistPage() {
+  return <ArtistForm method="post" />;
 }
 
-export default EditArtistPage;
+export default NewArtistPage;

@@ -1,19 +1,13 @@
 import { Form, redirect, useNavigate } from 'react-router-dom';
 import { FIREBASEAPIURL } from '../../SystemEnv';
 
-function onSaveArtist(event) {
-  event.preventDefault();
-  alert('submiting the form');
-  debugger;
-}
-
-function ArtistForm() {
+function ArtistForm(props) {
   const navigate = useNavigate();
   return (
     <div className="container px-lg-5">
       <div className="row gx-lg-5">
         <div className="p-4 p-lg-5 bg-light rounded-3 text-center">
-          <Form method="post">
+          <Form method={props.method}>
             <div className="mb-3">
               <label htmlFor="name" className="form-label">
                 Name
@@ -70,10 +64,9 @@ export async function action({ request, params }) {
     name: data.get('name'),
     imageUrl: data.get('imageUrl'),
   };
-  console.log(artistData);
 
   const response = await fetch(FIREBASEAPIURL + '/artists.json', {
-    method: 'POST',
+    method: request.method,
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(artistData),
   });

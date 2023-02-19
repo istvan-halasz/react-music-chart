@@ -6,6 +6,7 @@ import ArtistsRootLayout from './pages/Artists/ArtistsRoot';
 import ArtistsPage, { loader as artistsLoader } from './pages/Artists/Artists';
 import EditArtistPage from './pages/Artists/EditArtist';
 import { action as manipulateArtistAction } from './components/Artists/ArtistForm';
+import NewArtistPage from './pages/Artists/NewArtist';
 
 const router = createBrowserRouter([
   {
@@ -25,7 +26,7 @@ const router = createBrowserRouter([
           },
           {
             path: 'new',
-            element: <EditArtistPage />,
+            element: <NewArtistPage />,
             action: manipulateArtistAction,
           },
         ],
