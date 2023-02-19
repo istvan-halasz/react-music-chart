@@ -3,7 +3,7 @@ import RootLayout from './pages/Root';
 import HomePage from './pages/Home';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import ArtistsRootLayout from './pages/ArtistsRoot';
-import ArtistsPage from './pages/Artists';
+import ArtistsPage, { loader as artistsLoader } from './pages/Artists';
 import EditArtistPage from './pages/EditArtis';
 import { action as manipulateArtistAction } from './components/Artists/ArtistForm';
 
@@ -21,11 +21,12 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <ArtistsPage />,
+            loader: artistsLoader,
           },
           {
             path: 'new',
             element: <EditArtistPage />,
-            action: manipulateArtistAction
+            action: manipulateArtistAction,
           },
         ],
       },

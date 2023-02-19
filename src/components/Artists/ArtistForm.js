@@ -71,5 +71,16 @@ export async function action({ request, params }) {
   };
   console.log(artistData);
 
-  return redirect('/artists');
+  const response = await fetch(
+    'https://react-music-chart-203d9-default-rtdb.firebaseio.com/artists.json',
+    {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(artistData),
+    }
+  );
+
+  if (response.ok) {
+    return redirect('/artists');
+  }
 }

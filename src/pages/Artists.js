@@ -1,48 +1,46 @@
-import ArtistItem from '../components/Artists/ArtistItem';
-
-const artists = [
-  {
-    id: 1,
-    name: 'OneRepublic',
-    imageUrl:
-      'https://petofilive.hu/wp-content/uploads/sites/12/2022/03/westcoast-500x500.jpg',
-  },
-  {
-    id: 2,
-    name: 'Camilla Cabello ft. Ed Sheeran',
-    imageUrl:
-      'https://petofilive.hu/wp-content/uploads/sites/12/2022/03/edsheeran.jpg',
-  },
-  {
-    id: 3,
-    name: 'Kygo ft. DNCE',
-    imageUrl:
-      'https://petofilive.hu/wp-content/uploads/sites/12/2022/03/kygo.jpg',
-  },
-  {
-    id: 4,
-    name: 'Charlie Puth',
-    imageUrl:
-      'https://petofilive.hu/wp-content/uploads/sites/12/2022/02/charlieputh-e1644695149519-300x286.jpeg',
-  },
-  {
-    id: 5,
-    name: 'Tyga feat. Doja Cat',
-    imageUrl:
-      'https://petofilive.hu/wp-content/uploads/sites/12/2022/04/dojacat.jpg',
-  },
-];
+import { Suspense } from 'react';
+import { Await, defer, useLoaderData } from 'react-router-dom';
+import ArtistList from '../components/Artists/ArtistList';
 
 function ArtistsPage() {
+  const { artists } = useLoaderData();
+
   return (
-    <>
-      <section className="pt-4">
-        {artists.map((artist) => (
-          <ArtistItem artist={artist} key={artist.id} />
-        ))}
-      </section>
-    </>
+    <Suspense fallback={<p style={{ textAlign: 'center' }}>Loading...</p>}>
+      <Await resolve={artists}>
+        {(loadedArtists) => {
+          return <ArtistList artists={loadedArtists} />;
+        }}
+      </Await>
+    </Suspense>
   );
 }
 
 export default ArtistsPage;
+
+async function loadArtists() {
+  const response = await fetch(
+    'https://react-music-chart-203d9-default-rtdb.firebaseio.com/artists.json'
+  );
+
+  if (response.ok) {
+    const responseData = await response.json();
+
+    const loadedArtists = [];
+
+    for (const key in responseData) {
+      loadedArtists.push({
+        id: key,
+        name: responseData[key].name,
+        imageUrl: responseData[key].imageUrl,
+      });
+    }    
+    return loadedArtists;
+  }
+}
+
+export function loader() {
+  return defer({
+    artists: loadArtists(),
+  });
+}
