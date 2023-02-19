@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom';
-import ArtistsNavigation from '../components/ArtistsNavigation';
+import ArtistsNavigation from '../../components/ArtistsNavigation';
 
 function ArtistsRootLayout() {
   return (

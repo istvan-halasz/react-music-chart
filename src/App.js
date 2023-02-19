@@ -2,9 +2,9 @@ import './App.css';
 import RootLayout from './pages/Root';
 import HomePage from './pages/Home';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import ArtistsRootLayout from './pages/ArtistsRoot';
-import ArtistsPage, { loader as artistsLoader } from './pages/Artists';
-import EditArtistPage from './pages/EditArtis';
+import ArtistsRootLayout from './pages/Artists/ArtistsRoot';
+import ArtistsPage, { loader as artistsLoader } from './pages/Artists/Artists';
+import EditArtistPage from './pages/Artists/EditArtist';
 import { action as manipulateArtistAction } from './components/Artists/ArtistForm';
 
 const router = createBrowserRouter([

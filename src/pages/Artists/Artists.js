@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { Await, defer, useLoaderData } from 'react-router-dom';
-import ArtistList from '../components/Artists/ArtistList';
-import { FIREBASEAPIURL } from '../SystemEnv';
+import ArtistList from '../../components/Artists/ArtistList';
+import { FIREBASEAPIURL } from '../../SystemEnv';
 
 function ArtistsPage() {
   const { artists } = useLoaderData();

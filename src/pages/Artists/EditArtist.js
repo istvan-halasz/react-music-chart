@@ -1,4 +1,4 @@
-import ArtistForm from '../components/Artists/ArtistForm';
+import ArtistForm from '../../components/Artists/ArtistForm';
 
 function EditArtistPage() {
   return <ArtistForm />;
