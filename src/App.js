@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import ArtistsRootLayout from './pages/ArtistsRoot';
 import ArtistsPage from './pages/Artists';
 import EditArtistPage from './pages/EditArtis';
+import { action as manipulateArtistAction } from './components/Artists/ArtistForm';
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
           {
             path: 'new',
             element: <EditArtistPage />,
+            action: manipulateArtistAction
           },
         ],
       },

@@ -36,10 +36,9 @@ const artists = [
 function ArtistsPage() {
   return (
     <>
-      
       <section className="pt-4">
         {artists.map((artist) => (
-          <ArtistItem artist={artist} />
+          <ArtistItem artist={artist} key={artist.id} />
         ))}
       </section>
     </>

@@ -1,4 +1,4 @@
-import { Form, useNavigate } from 'react-router-dom';
+import { Form, redirect, useNavigate } from 'react-router-dom';
 
 function onSaveArtist(event) {
   event.preventDefault();
@@ -12,15 +12,16 @@ function ArtistForm() {
     <div className="container px-lg-5">
       <div className="row gx-lg-5">
         <div className="p-4 p-lg-5 bg-light rounded-3 text-center">
-          <Form onSubmit={onSaveArtist}>
+          <Form method="post">
             <div className="mb-3">
-              <label htmlFor="nameInput" className="form-label">
+              <label htmlFor="name" className="form-label">
                 Name
               </label>
               <input
                 type="text"
                 className="form-control"
-                id="nameInput"
+                id="name"
+                name="name"
                 required
               />
             </div>
@@ -32,6 +33,7 @@ function ArtistForm() {
                 type="Url"
                 className="form-control"
                 id="imageUrl"
+                name="imageUrl"
                 required
               />
             </div>
@@ -59,3 +61,15 @@ function ArtistForm() {
 }
 
 export default ArtistForm;
+
+export async function action({ request, params }) {
+  const data = await request.formData();
+
+  const artistData = {
+    name: data.get('name'),
+    imageUrl: data.get('imageUrl'),
+  };
+  console.log(artistData);
+
+  return redirect('/artists');
+}
