@@ -4,7 +4,7 @@ import HomePage from './pages/Home';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import ArtistsRootLayout from './pages/Artists/ArtistsRoot';
 import ArtistsPage, { loader as artistsLoader } from './pages/Artists/Artists';
-import EditArtistPage from './pages/Artists/EditArtist';
+import EditArtistPage, { loader as artistDetailLoader } from './pages/Artists/EditArtist';
 import { action as manipulateArtistAction } from './components/Artists/ArtistForm';
 import NewArtistPage from './pages/Artists/NewArtist';
 
@@ -23,6 +23,13 @@ const router = createBrowserRouter([
             index: true,
             element: <ArtistsPage />,
             loader: artistsLoader,
+          },
+          {
+            path: ':artistId',
+            id: 'artis-detail',
+            element: <EditArtistPage />,
+            action: manipulateArtistAction,
+            loader: artistDetailLoader
           },
           {
             path: 'new',
