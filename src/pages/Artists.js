@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
 import { Await, defer, useLoaderData } from 'react-router-dom';
 import ArtistList from '../components/Artists/ArtistList';
+import { FIREBASEAPIURL } from '../SystemEnv';
 
 function ArtistsPage() {
   const { artists } = useLoaderData();
@@ -19,9 +20,7 @@ function ArtistsPage() {
 export default ArtistsPage;
 
 async function loadArtists() {
-  const response = await fetch(
-    'https://react-music-chart-203d9-default-rtdb.firebaseio.com/artists.json'
-  );
+  const response = await fetch(FIREBASEAPIURL + '/artists.json');
 
   if (response.ok) {
     const responseData = await response.json();
@@ -34,7 +33,7 @@ async function loadArtists() {
         name: responseData[key].name,
         imageUrl: responseData[key].imageUrl,
       });
-    }    
+    }
     return loadedArtists;
   }
 }

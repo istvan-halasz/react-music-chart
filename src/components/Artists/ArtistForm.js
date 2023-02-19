@@ -1,4 +1,5 @@
 import { Form, redirect, useNavigate } from 'react-router-dom';
+import { FIREBASEAPIURL } from '../../SystemEnv';
 
 function onSaveArtist(event) {
   event.preventDefault();
@@ -71,14 +72,11 @@ export async function action({ request, params }) {
   };
   console.log(artistData);
 
-  const response = await fetch(
-    'https://react-music-chart-203d9-default-rtdb.firebaseio.com/artists.json',
-    {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(artistData),
-    }
-  );
+  const response = await fetch(FIREBASEAPIURL + '/artists.json', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(artistData),
+  });
 
   if (response.ok) {
     return redirect('/artists');
